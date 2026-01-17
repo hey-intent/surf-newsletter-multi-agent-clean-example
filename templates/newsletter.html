@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Weekly Break 🌊</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+
+      :root {
+        --bg: #f6f3ee; /* paper/sand */
+        --card: #ffffee;
+        --text: #121417; /* near-black */
+        --muted: #5b6470;
+        --line: #e7e2da;
+        --accent: #0b5c72; /* ocean */
+        --accent-2: #c96b3f; /* warm highlight */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        max-width: 680px;
+        margin: 0 auto;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Header: simple, editorial */
+      .header {
+        background: var(--card);
+        border-bottom: 1px solid var(--line);
+        padding: 44px 40px 34px;
+      }
+
+      .header-content {
+        text-align: left;
+      }
+
+      .logo {
+        font-family: "Fraunces", serif;
+        font-size: 2.2em;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: var(--text);
+      }
+
+      .tagline {
+        margin-top: 6px;
+        font-size: 1.02em;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .date-badge {
+        display: inline-block;
+        margin-top: 18px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.92em;
+      }
+
+      .container {
+        background: transparent;
+        padding: 26px 0 40px;
+      }
+
+      /* Cover: like a featured post */
+      .cover {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 34px 32px;
+        margin: 0 18px;
+      }
+
+      .cover-label {
+        display: inline-block;
+        font-size: 0.8em;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .cover h2 {
+        font-family: "Fraunces", serif;
+        font-size: 1.9em;
+        line-height: 1.18;
+        margin-bottom: 14px;
+      }
+
+      .cover-excerpt {
+        color: var(--muted);
+        font-size: 1.05em;
+        margin-bottom: 18px;
+      }
+
+      /* Replace big score pill with a small meta line */
+      .cover-meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 18px;
+        color: var(--muted);
+        font-size: 0.95em;
+      }
+
+      .score-badge {
+        background: transparent;
+        color: var(--muted);
+        padding: 0;
+        border-radius: 0;
+        font-weight: 600;
+        box-shadow: none;
+      }
+
+      .curator-picks {
+        background: transparent;
+        border-left: 2px solid var(--line);
+        padding: 0 0 0 10px;
+        border-radius: 0;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        padding: 12px 18px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 700;
+        box-shadow: none;
+      }
+      .btn-primary:hover {
+        transform: none;
+      }
+
+      /* Articles */
+      .articles-section {
+        padding: 22px 18px 0;
+      }
+
+      .section-title {
+        display: inline-block;
+        font-family: "Fraunces", serif;
+        font-size: 1.35em;
+        margin: 0 0 16px;
+        border: none;
+        padding: 0;
+      }
+
+      .article-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 22px 20px;
+        margin-bottom: 14px;
+        transition: none;
+        overflow: visible;
+      }
+
+      .article-card::before {
+        display: none;
+      }
+
+      .article-header {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .article-rank {
+        display: inline-block;
+        background: transparent;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 0.9em;
+        min-width: auto;
+        height: auto;
+        border-radius: 0;
+        margin-bottom: 6px;
+      }
+
+      .article-card h4 {
+        font-family: "Fraunces", serif;
+        font-size: 1.25em;
+        line-height: 1.2;
+      }
+
+      .article-score {
+        display: inline-block;
+        margin-top: 8px;
+        background: transparent;
+        color: var(--muted);
+        padding: 0;
+        border-radius: 0;
+        font-weight: 600;
+      }
+
+      .article-excerpt {
+        color: var(--muted);
+        margin: 10px 0 12px;
+      }
+
+      .article-meta {
+        font-size: 0.9em;
+        color: var(--muted);
+        gap: 8px;
+      }
+
+      .article-link {
+        color: var(--accent);
+        text-decoration: underline;
+        font-weight: 600;
+      }
+
+      .curator-tag {
+        display: none;
+      }
+
+      .persona-scores,
+      .cover-persona-scores {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+
+      .persona-score,
+      .cover-persona-score {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.82em;
+        font-weight: 600;
+      }
+
+      .persona-score.johnny,
+      .cover-persona-score.johnny {
+        background: #e8f4f8;
+        color: #0b5c72;
+      }
+
+      .persona-score.annie,
+      .cover-persona-score.annie {
+        background: #fef3e8;
+        color: #c96b3f;
+      }
+
+      .persona-score.joana,
+      .cover-persona-score.joana {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+
+      .score-value {
+        font-weight: 700;
+      }
+
+      /* Footer: simpler */
+      .footer {
+        background: transparent;
+        padding: 26px 18px 40px;
+        text-align: left;
+        color: var(--muted);
+      }
+
+      .footer-divider {
+        display: none;
+      }
+
+      .brand {
+        color: var(--text);
+        -webkit-text-fill-color: initial;
+        background: none;
+        font-weight: 700;
+      }
+
+      @media (max-width: 640px) {
+        .header {
+          padding: 34px 20px 26px;
+        }
+        .cover {
+          margin: 0 12px;
+          padding: 28px 20px;
+        }
+        .articles-section {
+          padding: 18px 12px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <div class="header-content">
+        <h1 class="logo">
+          The Weekly Break <span class="wave-emoji">🌊</span>
+        </h1>
+        <p class="tagline">
+          A weekly surf digest — handpicked stories worth your time.
+        </p>
+        <div class="date-badge">📅 {{ date }}</div>
+      </div>
+    </div>
+
+    <div class="container">
+      {% if cover_article %}
+      <!-- Cover Story -->
+      <div class="cover">
+        <span class="cover-label">⚡ Cover Story</span>
+
+        <h2>{{ cover_article.article.title }}</h2>
+
+        <p class="cover-excerpt">
+          {{ cover_article.article.excerpt[:280] }}{% if
+          cover_article.article.excerpt|length > 280 %}...{% endif %}
+        </p>
+
+        <div class="cover-meta">
+          <span class="score-badge">
+            <span class="star">⭐</span>
+            {{ "%.1f"|format(cover_article.final_avg) }}/5
+          </span>
+
+          {% if cover_article.selected_by|length > 1 %}
+          <div class="curator-picks">
+            Favorite of {{ cover_article.selected_by|join(' & ') }}
+          </div>
+          {% endif %}
+        </div>
+
+        {% if cover_article.final_scores %}
+        <div class="cover-persona-scores">
+          {% for score in cover_article.final_scores %}
+          <span class="cover-persona-score {{ score.grader|lower }}">
+            {% if score.grader == 'Johnny' %}🎯{% elif score.grader == 'Annie'
+            %}✨{% else %}🌍{% endif %} {{ score.grader }}:
+            <span class="score-value">{{ "%.1f"|format(score.score) }}</span>
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <a
+          href="{{ cover_article.article.url }}"
+          class="btn-primary"
+          style="margin-top: 25px"
+        >
+          🏄 Read full article
+        </a>
+      </div>
+      {% endif %} {% if articles|length > 1 %}
+      <!-- Top Stories -->
+      <div class="articles-section">
+        <h3 class="section-title">🔥 Top Stories</h3>
+
+        {% for item in articles[1:] %}
+        <div class="article-card">
+          <div class="article-header">
+            <span class="article-rank">{{ loop.index + 1 }}</span>
+
+            <div class="article-title-wrapper">
+              <h4>{{ item.article.title }}</h4>
+            </div>
+
+            <span class="article-score"
+              >⭐ {{ "%.1f"|format(item.final_avg) }}</span
+            >
+          </div>
+
+          <p class="article-excerpt">
+            {{ item.article.excerpt[:180] }}{% if item.article.excerpt|length >
+            180 %}...{% endif %}
+          </p>
+
+          <div class="article-meta">
+            <span>📰 {{ item.article.source }}</span>
+            <span class="meta-separator">•</span>
+            <span>📅 {{ item.article.published.strftime('%b %d, %Y') }}</span>
+            <span class="meta-separator">•</span>
+            <a href="{{ item.article.url }}" class="article-link">Read →</a>
+
+            {% if item.selected_by|length > 1 %}
+            <span class="meta-separator">•</span>
+            <span class="curator-tag">{{ item.selected_by|join(' + ') }}</span>
+            {% endif %}
+          </div>
+
+          {% if item.final_scores %}
+          <div class="persona-scores">
+            {% for score in item.final_scores %}
+            <span class="persona-score {{ score.grader|lower }}">
+              {% if score.grader == 'Johnny' %}🎯{% elif score.grader == 'Annie'
+              %}✨{% else %}🌍{% endif %} {{ score.grader }}:
+              <span class="score-value">{{ "%.1f"|format(score.score) }}</span>
+            </span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Editors -->
+      <div class="articles-section" style="padding-top: 10px">
+        <div style="color: #5b6470; font-size: 0.95em">
+          <strong>Our AI editors:</strong> 🎯 Johnny (performance), ✨ Annie
+          (travel), 🌍 Joana (impact).
+          <span style="opacity: 0.9">Curated with a little help from AI.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-content">
+        <p>A <span class="brand">HeyIntent</span> project</p>
+        <p style="margin-top: 16px; font-size: 0.85em; color: #718096">
+          Made with 💜 for Coded agent enthusiasts.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
